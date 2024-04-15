@@ -33,16 +33,16 @@ struct Buf {
 };
 
 enum class SerializationLibrary {
-    BITSERY,
-    BOOST,
+    //BITSERY,
+    //BOOST,
     CEREAL,
-    FLATBUFFERS,
-    HAND_WRITTEN,
-    IOSTREAM,
-    MSGPACK,
-    PROTOBUF,
-    YAS,
-    ZPP_BITS,
+    //FLATBUFFERS,
+    //HAND_WRITTEN,
+    //IOSTREAM,
+    //MSGPACK,
+    //PROTOBUF,
+    //YAS,
+    //ZPP_BITS,
 };
 
 struct TestInfo {

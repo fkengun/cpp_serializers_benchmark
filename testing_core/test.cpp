@@ -71,26 +71,26 @@ int runTest(ISerializerTest& testCase) {
 
 std::string getLibraryName(SerializationLibrary name) {
     switch (name) {
-        case SerializationLibrary::BITSERY:
-            return "bitsery";
-        case SerializationLibrary::BOOST:
-            return "boost";
+        //case SerializationLibrary::BITSERY:
+            //return "bitsery";
+        //case SerializationLibrary::BOOST:
+            //return "boost";
         case SerializationLibrary::CEREAL:
             return "cereal";
-        case SerializationLibrary::FLATBUFFERS:
-            return "flatbuffers";
-        case SerializationLibrary::HAND_WRITTEN:
-            return "handwritten";
-        case SerializationLibrary::IOSTREAM:
-            return "iostream";
-        case SerializationLibrary::MSGPACK:
-            return "msgpack";
-        case SerializationLibrary::PROTOBUF:
-            return "protobuf";
-        case SerializationLibrary::YAS:
-            return "yas";
-        case SerializationLibrary::ZPP_BITS:
-            return "zpp_bits";
+        //case SerializationLibrary::FLATBUFFERS:
+            //return "flatbuffers";
+        //case SerializationLibrary::HAND_WRITTEN:
+            //return "handwritten";
+        //case SerializationLibrary::IOSTREAM:
+            //return "iostream";
+        //case SerializationLibrary::MSGPACK:
+            //return "msgpack";
+        //case SerializationLibrary::PROTOBUF:
+            //return "protobuf";
+        //case SerializationLibrary::YAS:
+            //return "yas";
+        //case SerializationLibrary::ZPP_BITS:
+            //return "zpp_bits";
     }
     throw "Unknown library name";
 }

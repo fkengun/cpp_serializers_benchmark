@@ -23,6 +23,8 @@
 #include <testing/test.h>
 #include <cereal/archives/binary.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/map.hpp>
+#include <cereal/types/tuple.hpp>
 #include <cereal/types/string.hpp>
 
 namespace cereal {
@@ -38,8 +40,13 @@ namespace cereal {
     }
 
     template<typename Archive>
+    void serialize(Archive &archive, MyTypes::LogEvent &o) {
+        archive(o.storyId, o.eventTime, o.clientId, o.eventIndex, o.logRecord);
+    }
+
+    template<typename Archive>
     void serialize(Archive &archive, MyTypes::Monster &o) {
-        archive(o.name, o.equipped, o.weapons, o.pos, o.path, o.mana, o.inventory, o.hp, o.color);
+        archive(o.storyId, o.startTime, o.endTime, o.revisionTime, o.logEvents);
     }
 
 }
