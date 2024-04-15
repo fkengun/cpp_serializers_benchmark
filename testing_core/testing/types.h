@@ -26,6 +26,8 @@
 
 #include <string>
 #include <vector>
+#include <tuple>
+#include <map>
 #include <valarray>
 
 namespace MyTypes {
@@ -61,29 +63,88 @@ namespace MyTypes {
         };
     };
 
+    typedef uint64_t chrono_time;
+    typedef uint32_t chrono_index;
+    typedef uint64_t StoryId;
+    typedef uint64_t ClientId;
+    typedef std::tuple <chrono_time, ClientId, chrono_index> EventSequence;
+
+    struct LogEvent {
+      StoryId storyId;
+      uint64_t eventTime;
+      ClientId clientId;
+      uint32_t eventIndex;
+      std::string logRecord;
+
+      bool operator==(const LogEvent &other) const
+      {
+        return (storyId == other.storyId && eventTime == other.eventTime && clientId == other.clientId &&
+            eventIndex == other.eventIndex && logRecord == other.logRecord);
+      }
+
+      LogEvent& operator=(const LogEvent& other)
+      {
+        if (this != &other) // protect against invalid self-assignment
+        {
+          // copy data members
+          this->storyId = other.storyId;
+          this->eventTime = other.eventTime;
+          this->clientId = other.clientId;
+          this->eventIndex = other.eventIndex;
+          this->logRecord = other.logRecord;
+        }
+        // by convention, always return *this
+        return *this;
+      }
+    };
+
     struct Monster {
-        Vec3 pos;
-        int16_t mana;
-        int16_t hp;
-        std::string name;
-        std::vector<uint8_t> inventory;
-        Color color;
-        std::vector<Weapon> weapons;
-        Weapon equipped;
-        std::vector<Vec3> path;
+        //Vec3 pos;
+        //int16_t mana;
+        //int16_t hp;
+        //std::string name;
+        //std::vector<uint8_t> inventory;
+        //Color color;
+        //std::vector<Weapon> weapons;
+        //Weapon equipped;
+        //std::vector<Vec3> path;
+        StoryId storyId;
+        uint64_t startTime;
+        uint64_t endTime;
+        uint64_t revisionTime;
+        std::map <EventSequence, LogEvent> logEvents;
 
         bool operator==(const MyTypes::Monster &rhs) const {
-            return pos == rhs.pos &&
-                   mana == rhs.mana &&
-                   hp == rhs.hp &&
-                   name == rhs.name &&
-                   inventory == rhs.inventory &&
-                   color == rhs.color &&
-                   weapons == rhs.weapons &&
-                   equipped == rhs.equipped &&
-                   path == rhs.path;
+            //eeturn pos == rhs.pos &&
+            //       mana == rhs.mana &&
+            //       hp == rhs.hp &&
+            //       name == rhs.name &&
+            //       inventory == rhs.inventory &&
+            //       color == rhs.color &&
+            //       weapons == rhs.weapons &&
+            //       equipped == rhs.equipped &&
+            //       path == rhs.path;
+            return storyId == rhs.storyId &&
+                   startTime == rhs.startTime &&
+                   endTime == rhs.endTime &&
+                   revisionTime == rhs.revisionTime &&
+                   logEvents == rhs.logEvents;
         };
 
+        Monster& operator=(const Monster& other)
+        {
+          if (this != &other) // protect against invalid self-assignment
+          {
+            // copy data members
+            this->storyId = other.storyId;
+            this->startTime = other.startTime;
+            this->endTime = other.endTime;
+            this->revisionTime = other.revisionTime;
+            this->logEvents = other.logEvents;
+          }
+          // by convention, always return *this
+          return *this;
+        }
     };
 
     std::vector<Monster> createMonsters(size_t count);
